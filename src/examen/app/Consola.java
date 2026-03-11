@@ -3,18 +3,57 @@ package examen.app;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Consola {
+public class Consola implements IEntradaSalida{
    
     private final Scanner keyboard;
 
     public Consola(Scanner keyboard) {
         this.keyboard = keyboard;
     }
-
-   
-    public Consola() {
-        keyboard = new Scanner(System.in);
+    
+	public Consola() {
+	        keyboard = new Scanner(System.in);
+	}
+	
+    public void imprimir(String texto) {
+    	System.out.print(texto);
     }
+    
+	public void imprimirLinea(String texto) {
+		System.out.println(texto);
+	}
+	
+	public String leerTexto(String mensaje) {
+		return "";
+	}
+	
+	public int leerEntero(String mensaje) {
+		return 1;
+	}
+	
+	public double leerImporte(String mensaje) {
+		return 3.12;
+	}
+	
+	public void mostrarMenu() {
+		System.out.println("========= MENÚ =========");
+		System.out.println("1 - Contratar empleado");
+		System.out.println("2 - Listar todos los empleados");
+		System.out.println("3 - Listar empleados con filtro");
+		System.out.println("4 - Salir");
+	}
+	
+	public void limpiarPantalla() {
+		
+	}
+	
+	public void pausa() {
+		
+	}
+   
+    
+    
+    
 
     public void cleanInput() {
         keyboard.nextLine();
