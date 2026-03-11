@@ -1,11 +1,11 @@
 package examen.dominio;
 
-public class Comercial {
+public class Comercial extends Empleado{
 
 	private double ventas;
 	
 	public Comercial(String dni, String nombre, String apellidos, double sueldoBase) {
-		super();
+		super(dni, nombre, apellidos, sueldoBase);
 	}
 	
 	public void setVentas(double ventas) {

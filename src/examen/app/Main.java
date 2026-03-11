@@ -6,8 +6,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		IEntradaSalida consola = null;
-		Plantilla plantilla = null;
+		IEntradaSalida consola = new Consola();
+		Plantilla plantilla = new Plantilla();
 		GestorEmpleados gestorEmpleados = new GestorEmpleados(plantilla, consola);
 		
 		gestorEmpleados.ejecutar();

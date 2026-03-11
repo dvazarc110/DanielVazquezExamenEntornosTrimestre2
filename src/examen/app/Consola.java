@@ -24,15 +24,20 @@ public class Consola implements IEntradaSalida{
 	}
 	
 	public String leerTexto(String mensaje) {
-		return "";
+		System.out.print(mensaje);
+		return keyboard.nextLine();
 	}
 	
 	public int leerEntero(String mensaje) {
-		return 1;
+		System.out.print(mensaje);
+		int num = Integer.parseInt(keyboard.nextLine());
+		return num;
 	}
 	
 	public double leerImporte(String mensaje) {
-		return 3.12;
+		System.out.print(mensaje);
+		double num = Double.parseDouble(keyboard.nextLine());
+		return num;
 	}
 	
 	public void mostrarMenu() {
