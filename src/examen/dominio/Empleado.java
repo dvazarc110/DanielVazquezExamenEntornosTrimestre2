@@ -8,7 +8,6 @@ public abstract class Empleado {
 	private double sueldoBase;
 
 	public Empleado(String dni, String nombre, String apellidos, double sueldoBase) {
-		super();
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;

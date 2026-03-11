@@ -1,5 +1,7 @@
 package examen.app;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import examen.dominio.Comercial;
@@ -25,9 +27,19 @@ public class GestorEmpleados {
 			if(opcion == 1) {
 				contratarEmpleado();
 			}else if(opcion == 2) {
-				listarTodos();
+				if((this.plantilla) == null) {
+					(this.consola).imprimirLinea("Introduza primero a un Empleado.");
+					contratarEmpleado();
+				}else {
+					listarTodos();
+				}
 			}else if(opcion == 3) {
-				listarPorFiltro();
+				if((this.plantilla) == null) {
+					(this.consola).imprimirLinea("Introduza primero a un Empleado.");
+					contratarEmpleado();
+				}else {
+					listarPorFiltro();
+				}
 			}else {
 				(this.consola).imprimirLinea("¡Hasta luego!");
 			}
@@ -58,29 +70,45 @@ public class GestorEmpleados {
 			categoria = (this.consola).leerEntero("Categoría:");
 			empleado = new Tecnico(dni, nombre, apellidos, sueldoBase, categoria);
 		}else {
-			(this.consola).imprimirLinea("Introduzca el Dni, Nombre, Apellidos y Sueldo Base de su nuevo empleado.");
+			(this.consola).imprimirLinea("Introduzca el Dni, Nombre, Apellidos, Sueldo Base y Ventas de su nuevo empleado.");
 			dni = (this.consola).leerTexto("DNI: ");
 			nombre = (this.consola).leerTexto("Nombre:");
 			apellidos = (this.consola).leerTexto("Apellidos:");
 			sueldoBase = (this.consola).leerImporte("Sueldo Base:");
+			double ventas = (this.consola).leerImporte("Ventas:");
 			empleado = new Comercial(dni, nombre, apellidos, sueldoBase);
+			((Comercial) empleado).setVentas(ventas);
 		}
 		(this.plantilla).agregarEmpleado(empleado);;
 	}
 	
 	private void listarTodos() {
-		
+		if((this.plantilla) == null) {
+			(this.consola).imprimirLinea("Introduza primero a un Empleado.");
+			contratarEmpleado();
+		}
+		listarEmpleados((this.plantilla).getEmpleadosPorNombre(""));
 	}
 	
 	private void listarPorFiltro() {
-		
+		if((this.plantilla) == null) {
+			(this.consola).imprimirLinea("Introduza primero a un Empleado.");
+			contratarEmpleado();
+		}
+		String filtro = (this.consola).leerTexto("Introduzca el filtro a usar:");
+		listarEmpleados((this.plantilla).getEmpleadosPorNombre(filtro));
 	}
 	
-	private void listarEmpleados() {
-		
+	private void listarEmpleados(List<Empleado> empleados) {
+		ordenarPorNombre(empleados);
+		int cont = 1;
+		for(Empleado emp : empleados) {
+			(this.consola).imprimirLinea(String.format("%d - %s %s: %.2f€", cont, emp.getNombre(), emp.getApellidos(), emp.getSueldo()));
+			cont++;
+		}
 	}
 	
 	private void ordenarPorNombre(List<Empleado> empleados) {
-		
+		Collections.sort(empleados, Comparator.comparing(Empleado::getNombre));
 	}
 }

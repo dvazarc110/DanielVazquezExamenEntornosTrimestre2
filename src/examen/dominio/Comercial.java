@@ -13,6 +13,7 @@ public class Comercial extends Empleado{
 	}
 	
 	public double getSueldo(){
-		return 3.12;
+		double sueldo = (this.getSueldoBase()) + (double)((this.ventas)/10);
+		return sueldo;
 	}
 }

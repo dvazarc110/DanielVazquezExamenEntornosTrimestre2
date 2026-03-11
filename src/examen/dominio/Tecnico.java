@@ -10,6 +10,7 @@ public class Tecnico extends Empleado{
 	}
 	
 	public double getSueldo(){
-		return 3.12;
+		double sueldo = (this.getSueldoBase()) + (double)((this.categoria)*100);
+		return sueldo;
 	}
 }
